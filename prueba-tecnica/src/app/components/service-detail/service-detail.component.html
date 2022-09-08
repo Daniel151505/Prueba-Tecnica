@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="form" class="row" novalidate>
+        <!-- Name -->
+        <mat-form-field class="col-md-6">
+          <input
+            matInput
+            type="text"
+            formControlName="name"
+            placeholder="Nombre"
+          />
+          <mat-error *ngIf="form.get('name')?.hasError('required')">
+            El nombre es requerido.
+          </mat-error>
+          <mat-error *ngIf="form.get('name')?.hasError('validateFormat')">
+            No se puede ingresar caracteres especiales.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Type -->
+        <mat-form-field class="col-md-6">
+          <mat-label>Tipo de servicio</mat-label>
+          <mat-select formControlName="type">
+            <mat-option *ngFor="let item of serviceType" [value]="item">
+              {{ item }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('type')?.hasError('required')">
+            El tipo de servicio es requerido.
+          </mat-error>
+          <mat-error *ngIf="form.get('type')?.hasError('validateFormat')">
+            No se puede ingresar caracteres especiales.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Description -->
+        <mat-form-field class="pt-2">
+          <textarea
+            matInput
+            placeholder="Descripción"
+            formControlName="description"
+          >
+          </textarea>
+
+          <mat-error *ngIf="form.get('description')?.hasError('required')">
+            La descripción es requerida.
+          </mat-error>
+          <mat-error *ngIf="form.get('description')?.errors?.maxlength">
+            La descripción solo debe detener 43 carácteres.
+          </mat-error>
+          <mat-error *ngIf="form.get('description')?.hasError('validateFormat')">
+            No se puede ingresar caracteres especiales.
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <!-- Buttons -->
+      <div class="button-container text-center">
+        <button
+          mat-raised-button
+          color="primary"
+          class="m-2"
+          (click)="submitForm()"
+          [disabled]="!form.valid"
+        >
+          Guardar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="closeDialog()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
