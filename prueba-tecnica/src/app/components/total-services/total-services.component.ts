@@ -56,14 +56,11 @@ export class TotalServicesComponent implements OnInit {
         }
 
         this.showSpinner = false;
-        console.log(this.services.length, 'tomate')
 
         if (this.services.length === 0) {
           this.new = true;
-          console.log(this.new)
         } else {
           this.new = false;
-          console.log(this.new)
         }
 
       } catch (error) {
@@ -78,7 +75,6 @@ export class TotalServicesComponent implements OnInit {
   }
 
   openDialogDetail(index?: any, service?: any) {
-    console.log(index)
     const data = { service: service,
                     index: index }
     const dialogRef = this.dialog.open(ServiceDetailComponent, {
