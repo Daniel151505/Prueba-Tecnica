@@ -47,7 +47,7 @@
             La descripción es requerida.
           </mat-error>
           <mat-error *ngIf="form.get('description')?.errors?.maxlength">
-            La descripción solo debe detener 43 carácteres.
+            La descripción solo debe de tener 43 carácteres.
           </mat-error>
           <mat-error *ngIf="form.get('description')?.hasError('validateFormat')">
             No se puede ingresar caracteres especiales.
